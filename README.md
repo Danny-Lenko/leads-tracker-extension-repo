@@ -1,16 +1,29 @@
-# title(){return this.options.title||this.options.name}
+# Chrome Extension - Leads Tracker
 
-## Supporting Scrimba
+### What I learned
 
-Since 2017, we have created over 20 free courses on Scrimba, and we're going to
-continue launching free courses. But to pay our bills, we have to charge once
-in a while. So if you've ever wanted to "give back" to Scrimba, you can do that by buying
-	one of our paid courses
+1) the Utility Classes "gap" property to use between flex and grid elements (html customizable variable)
 
-- [Become a professional React developer](https://scrimba.com/course/greact)
-- [The Responsive Web Design Bootcamp](https://scrimba.com/course/gresponsive)
-- [The Ultimate JavaScript Bootcamp](https://scrimba.com/course/gjavascript)
+```css
+.flex {
+   display: flex;
+   gap: var(--gap, 1.6rem);
+}
+.grid {
+   display: grid;
+   gap: var(--gap, 1.6rem);
+}
+```
 
-	It would also mean the world to us if you share the courses.  
+### Continued development
 
-Happy Coding!
+* CSS grid;
+
+*Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+
+### Useful resources
+
+- [Grid Attack](https://codingfantasy.com) - This helped me practice CSS GRID. Challenging and interactive game aimed at learning the css grid properties' application.
+
+- [Git + GitHub](https://www.youtube.com/watch?v=RGOj5yH7evk) - the basic git commands (Youtube).
+- [The Markdown Guide](https://www.markdownguide.org/) - for more help with writing markdown (Article).
