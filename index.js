@@ -44,9 +44,18 @@ let view = {
    }
 };
 
+function saveCurrentTab() {
+   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      interaction.myLeads.push(tabs[0].url);
+      localStorage.setItem('myLeads', JSON.stringify(interaction.myLeads));
+      view.parseLeads();
+   })
+}
+
 function init() {
    document.querySelector('#input-btn').addEventListener('click', interaction.saveInput);
    document.querySelector('#delete-btn').addEventListener('dblclick', interaction.deleteLeads);
+   document.querySelector('#tab-btn').addEventListener('click', saveCurrentTab);
    view.parseLeads();
 }
 window.onload = init;
