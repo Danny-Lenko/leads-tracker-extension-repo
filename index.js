@@ -20,6 +20,14 @@ let interaction = {
       interaction.myLeads = [];
       localStorage.clear();
       ulEl.innerHTML = '';
+   },
+
+   saveCurrentTab: function() {
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+         interaction.myLeads.push(tabs[0].url);
+         localStorage.setItem('myLeads', JSON.stringify(interaction.myLeads));
+         view.parseLeads();
+      })
    }
 };
 
@@ -28,8 +36,6 @@ let view = {
       let restoredLeads = JSON.parse(localStorage.getItem('myLeads'));
       if (restoredLeads) {
          interaction.myLeads = restoredLeads;
-      } else {
-         interaction.myLeads = [];
       }
       this.renderLeads(interaction.myLeads);
    },
@@ -44,18 +50,10 @@ let view = {
    }
 };
 
-function saveCurrentTab() {
-   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      interaction.myLeads.push(tabs[0].url);
-      localStorage.setItem('myLeads', JSON.stringify(interaction.myLeads));
-      view.parseLeads();
-   })
-}
-
 function init() {
    document.querySelector('#input-btn').addEventListener('click', interaction.saveInput);
    document.querySelector('#delete-btn').addEventListener('dblclick', interaction.deleteLeads);
-   document.querySelector('#tab-btn').addEventListener('click', saveCurrentTab);
+   document.querySelector('#tab-btn').addEventListener('click', interaction.saveCurrentTab);
    view.parseLeads();
 }
 window.onload = init;
