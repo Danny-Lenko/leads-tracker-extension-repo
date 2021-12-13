@@ -1,44 +1,52 @@
 "use strict"
 
-function init() {
-   document.querySelector('#input-btn').addEventListener('click', interaction.saveInput);
-}
-window.onload = init;
-
 let interaction = {
-   
    myLeads: [],
 
    saveInput: function() {
       const inputEl = document.querySelector('#input-el');
       const inputValue = inputEl.value;
+
       if (inputValue) {
          interaction.myLeads.push(inputValue);
       }
-      
-      // this.leads.push(inputValue);
-
-      localStorage.setItem('leads', interaction.myLeads);
-      // view.renderLeads(inputValue);
+      localStorage.setItem('myLeads', JSON.stringify(interaction.myLeads));
       inputEl.value = '';
-   }
+      view.parseLeads();
+   },
 
+   deleteLeads: function() {
+      const ulEl = document.querySelector('#ul-el');
+      interaction.myLeads = [];
+      localStorage.clear();
+      ulEl.innerHTML = '';
+   }
 };
 
+let view = {
+   parseLeads: function() {
+      let restoredLeads = JSON.parse(localStorage.getItem('myLeads'));
+      if (restoredLeads) {
+         interaction.myLeads = restoredLeads;
+      } else {
+         interaction.myLeads = [];
+      }
+      this.renderLeads(interaction.myLeads);
+   },
 
-// let view = {
+   renderLeads: function(value) {
+      const ulEl = document.querySelector('#ul-el');
+      let leadsList = '';
+      for (let i = 0; i < value.length; i++) {
+         leadsList += `<li> <a href="${value[i]}" target="_blank"> ${value[i]} </a> <li>`;
+      }
+      ulEl.innerHTML = leadsList;
+   }
+};
 
-//    renderLeads: function(value) {
-//       const ulEl = document.querySelector('#ul-el');
-//       ulEl.innerHTML += `<li> <a href="${value}"> ${value} </a> <li>`; 
-//    }
-
-// };
-
-// document.querySelector('#delete-btn').addEventListener('dblclick', clearStorage);
-// function clearStorage() {
-//    localStorage.clear();
-// }
-
-
-
+function init() {
+   document.querySelector('#input-btn').addEventListener('click', interaction.saveInput);
+   document.querySelector('#delete-btn').addEventListener('dblclick', interaction.deleteLeads);
+   view.parseLeads();
+}
+window.onload = init;
