@@ -23,7 +23,8 @@
 
 ### Useful resources
 
-- [Grid Attack](https://codingfantasy.com) - This helped me practice CSS GRID. Challenging and interactive game aimed at learning the css grid properties' application.
+- [JSON.stringify()](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) - This helped me with the Local Storage interaction.
+- [URL for the extension](https://stackoverflow.com/questions/6132018/how-can-i-get-the-current-tab-url-for-chrome-extension) - The first answer describes the way to get the current URL for a Chrome Extension.
 
 - [Git + GitHub](https://www.youtube.com/watch?v=RGOj5yH7evk) - the basic git commands (Youtube).
 - [The Markdown Guide](https://www.markdownguide.org/) - for more help with writing markdown (Article).
